@@ -25,7 +25,10 @@ const createBookPreviews = (books, container) => {
   container.appendChild(fragment);
 };
 
-document.querySelector("[data-list-items]").appendChild(starting);
+createBookPreviews(
+  matches.slice(0, BOOKS_PER_PAGE),
+  getElement("[data-list-items]")
+);
 
 const genreHtml = document.createDocumentFragment();
 const firstGenreElement = document.createElement("option");
