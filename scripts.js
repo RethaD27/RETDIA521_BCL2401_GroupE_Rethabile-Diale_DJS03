@@ -30,6 +30,21 @@ createBookPreviews(
   getElement("[data-list-items]")
 );
 
+const createOptions = (options, defaultOption, container) => {
+  const fragment = document.createDocumentFragment();
+  const firstOption = document.createElement("option");
+  firstOption.value = "any";
+  firstOption.innerText = defaultOption;
+  fragment.appendChild(firstOption);
+  Object.entries(options).forEach(([id, name]) => {
+    const element = document.createElement("option");
+    element.value = id;
+    element.innerText = name;
+    fragment.appendChild(element);
+  });
+  container.appendChild(fragment);
+};
+
 const genreHtml = document.createDocumentFragment();
 const firstGenreElement = document.createElement("option");
 firstGenreElement.value = "any";
