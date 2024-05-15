@@ -45,6 +45,9 @@ const createOptions = (options, defaultOption, container) => {
   container.appendChild(fragment);
 };
 
+createOptions(genres, 'All Genres', getElement('[data-search-genres]'));
+createOptions(authors, 'All Authors', getElement('[data-search-authors]'));
+--
 const genreHtml = document.createDocumentFragment();
 const firstGenreElement = document.createElement("option");
 firstGenreElement.value = "any";
