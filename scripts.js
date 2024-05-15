@@ -99,6 +99,21 @@ const applySearchFilters = (filters) => {
         return titleMatch && authorMatch && genreMatch;
     });
 };
+
+// Close search overlay
+getElement('[data-search-cancel]').addEventListener('click', () => closeOverlay('[data-search-overlay]'));
+
+// Close settings overlay
+getElement('[data-settings-cancel]').addEventListener('click', () => closeOverlay('[data-settings-overlay]'));
+
+// Open search overlay
+getElement('[data-header-search]').addEventListener('click', () => openOverlay('[data-search-overlay]', '[data-search-title]'));
+
+// Open settings overlay
+getElement('[data-header-settings]').addEventListener('click', () => openOverlay('[data-settings-overlay]'));
+
+// Close active book overlay
+getElement('[data-list-close]').addEventListener('click', () => closeOverlay('[data-list-active]'));
 --
 const genreHtml = document.createDocumentFragment();
 const firstGenreElement = document.createElement("option");
