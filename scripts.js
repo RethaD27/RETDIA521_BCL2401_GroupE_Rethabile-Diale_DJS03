@@ -1,11 +1,14 @@
+// Importing data and constants from external module
 import { books, authors, genres, BOOKS_PER_PAGE } from "./data.js";
 
+// Initializing variables for pagination and filtering
 let page = 1;
 let matches = books;
 
+// Function to get DOM element by selector
 const getElement = (selector) => document.querySelector(selector);
-//const starting = document.createDocumentFragment()
 
+// Function to create and append book previews to the DOM
 const createBookPreviews = (books, container) => {
   const fragment = document.createDocumentFragment();
   books.forEach(({ author, id, image, title }) => {
@@ -25,11 +28,13 @@ const createBookPreviews = (books, container) => {
   container.appendChild(fragment);
 };
 
+// Initial rendering of book previews
 createBookPreviews(
   matches.slice(0, BOOKS_PER_PAGE),
   getElement("[data-list-items]")
 );
 
+// Function to create and append options to a select element
 const createOptions = (options, defaultOption, container) => {
   const fragment = document.createDocumentFragment();
   const firstOption = document.createElement("option");
@@ -45,6 +50,7 @@ const createOptions = (options, defaultOption, container) => {
   container.appendChild(fragment);
 };
 
+// Populate genre and author dropdowns
 createOptions(genres, 'All Genres', getElement('[data-search-genres]'));
 createOptions(authors, 'All Authors', getElement('[data-search-authors]'));
 --
