@@ -60,6 +60,8 @@ const applyTheme = (theme) => {
     document.documentElement.style.setProperty('--color-light', isNight ? '10, 10, 20' : '255, 255, 255');
     getElement('[data-settings-theme]').value = isNight ? 'night' : 'day';
 };
+
+applyTheme(window.matchMedia('(prefers-color-scheme: dark)').matches ? 'night' : 'day');
 --
 const genreHtml = document.createDocumentFragment();
 const firstGenreElement = document.createElement("option");
