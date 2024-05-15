@@ -114,6 +114,14 @@ getElement('[data-header-settings]').addEventListener('click', () => openOverlay
 
 // Close active book overlay
 getElement('[data-list-close]').addEventListener('click', () => closeOverlay('[data-list-active]'));
+
+getElement('[data-settings-form]').addEventListener('submit', (event) => {
+    event.preventDefault();
+    const formData = new FormData(event.target);
+    const { theme } = Object.fromEntries(formData);
+    applyTheme(theme);
+    closeOverlay('[data-settings-overlay]');
+});
 --
 const genreHtml = document.createDocumentFragment();
 const firstGenreElement = document.createElement("option");
