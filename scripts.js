@@ -62,6 +62,31 @@ const applyTheme = (theme) => {
 };
 
 applyTheme(window.matchMedia('(prefers-color-scheme: dark)').matches ? 'night' : 'day');
+
+const updateShowMoreButton = () => {
+    const remainingBooks = matches.length - (page * BOOKS_PER_PAGE);
+    const button = getElement('[data-list-button]');
+    button.innerText = `Show more (${remainingBooks})`; // Fixed string interpolation
+    button.disabled = remainingBooks <= 0;
+    button.innerHTML = `
+        <span>Show more</span>
+        <span class="list__remaining">(${remainingBooks > 0 ? remainingBooks : 0})</span>
+    `;
+};
+
+// Updating "Show more" button initially
+updateShowMoreButton();
+
+// Function to close overlay
+const closeOverlay = (selector) => {
+    getElement(selector).open = false;
+};
+
+// Function to open overlay
+const openOverlay = (selector, focusSelector = null) => {
+    getElement(selector).open = true;
+    if (focusSelector) getElement(focusSelector).focus();
+};
 --
 const genreHtml = document.createDocumentFragment();
 const firstGenreElement = document.createElement("option");
