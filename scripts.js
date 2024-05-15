@@ -53,6 +53,13 @@ const createOptions = (options, defaultOption, container) => {
 // Populate genre and author dropdowns
 createOptions(genres, 'All Genres', getElement('[data-search-genres]'));
 createOptions(authors, 'All Authors', getElement('[data-search-authors]'));
+
+const applyTheme = (theme) => {
+    const isNight = theme === 'night';
+    document.documentElement.style.setProperty('--color-dark', isNight ? '255, 255, 255' : '10, 10, 20');
+    document.documentElement.style.setProperty('--color-light', isNight ? '10, 10, 20' : '255, 255, 255');
+    getElement('[data-settings-theme]').value = isNight ? 'night' : 'day';
+};
 --
 const genreHtml = document.createDocumentFragment();
 const firstGenreElement = document.createElement("option");
