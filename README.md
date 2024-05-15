@@ -1,4 +1,4 @@
-# Book Connect
+# Book Connect💻📚
 
 ## Introduction
 Book Connect is a web application designed to help users discover and explore books based on various criteria such as title, genre, and author.
