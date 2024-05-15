@@ -54,6 +54,7 @@ const createOptions = (options, defaultOption, container) => {
 createOptions(genres, 'All Genres', getElement('[data-search-genres]'));
 createOptions(authors, 'All Authors', getElement('[data-search-authors]'));
 
+// Function to apply theme based on user preference
 const applyTheme = (theme) => {
     const isNight = theme === 'night';
     document.documentElement.style.setProperty('--color-dark', isNight ? '255, 255, 255' : '10, 10, 20');
@@ -61,8 +62,10 @@ const applyTheme = (theme) => {
     getElement('[data-settings-theme]').value = isNight ? 'night' : 'day';
 };
 
+// Applying theme based on user's preferred color scheme
 applyTheme(window.matchMedia('(prefers-color-scheme: dark)').matches ? 'night' : 'day');
 
+// Function to update "show more" button text & state
 const updateShowMoreButton = () => {
     const remainingBooks = matches.length - (page * BOOKS_PER_PAGE);
     const button = getElement('[data-list-button]');
