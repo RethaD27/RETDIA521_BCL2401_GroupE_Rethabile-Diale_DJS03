@@ -77,14 +77,13 @@ applyTheme(
 const updateShowMoreButton = () => {
   const remainingBooks = matches.length - page * BOOKS_PER_PAGE;
   const button = getElement("[data-list-button]");
-  button.innerText = `Show more (${remainingBooks})`; // Fixed string interpolation
-  button.disabled = remainingBooks <= 0;
   button.innerHTML = `
-        <span>Show more</span>
-        <span class="list__remaining">(${
-          remainingBooks > 0 ? remainingBooks : 0
-        })</span>
+      <span>Show more</span>
+      <span class="list__remaining">(${
+        remainingBooks > 0 ? remainingBooks : 0
+      })</span>
     `;
+  button.disabled = remainingBooks <= 0;
 };
 
 // Updating "Show more" button initially
@@ -170,24 +169,15 @@ getElement("[data-search-form]").addEventListener("submit", (event) => {
 });
 
 // Click event listener for "show more" button
-getElement("[data-search-form]").addEventListener("submit", (event) => {
-  event.preventDefault();
-  const formData = new FormData(event.target);
-  const filters = Object.fromEntries(formData);
-  matches = applySearchFilters(filters);
-  page = 1;
-  getElement("[data-list-message]").classList.toggle(
-    "list__message_show",
-    matches.length < 1
-  );
-  getElement("[data-list-items]").innerHTML = "";
+getElement("[data-list-button]").addEventListener("click", () => {
+  page++;
+  const start = (page - 1) * BOOKS_PER_PAGE;
+  const end = start + BOOKS_PER_PAGE;
   createBookPreviews(
-    matches.slice(0, BOOKS_PER_PAGE),
+    matches.slice(start, end),
     getElement("[data-list-items]")
   );
   updateShowMoreButton();
-  window.scrollTo({ top: 0, behavior: "smooth" });
-  closeOverlay("[data-search-overlay]");
 });
 
 // Click event listener for book reviews
